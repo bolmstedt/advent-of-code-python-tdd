@@ -1,0 +1,90 @@
+[GLOBAL]
+pants_version = "2.8.0rc3"
+backend_packages = [
+    "pants.backend.python",
+    "pants.backend.python.lint.bandit",
+    "pants.backend.python.lint.black",
+    "pants.backend.python.lint.docformatter",
+    "pants.backend.python.lint.flake8",
+    "pants.backend.python.lint.isort",
+    "pants.backend.python.typecheck.mypy",
+]
+
+[anonymous-telemetry]
+enabled = false
+
+[bandit]
+version = "bandit==1.7.0"
+config = "vendor/bandit.yml"
+args = ["--silent"]
+lockfile = "vendor/lock/bandit.txt"
+
+[black]
+version = "black==21.9b0"
+config = "vendor/pyproject.toml"
+lockfile = "vendor/lock/black.txt"
+interpreter_constraints = ["CPython==3.9.7"]
+
+[coverage-py]
+interpreter_constraints = ["CPython==3.9.7"]
+
+[docformatter]
+version = "docformatter==1.4"
+lockfile = "vendor/lock/docformatter.txt"
+args = ["--wrap-summaries", "87", "--wrap-descriptions", "80"]
+interpreter_constraints = ["CPython==3.9.7"]
+
+[flake8]
+version = "flake8==3.9.2"
+config = "vendor/setup.cfg"
+lockfile = "vendor/lock/flake8.txt"
+extra_requirements = [
+    "flake8-annotations",
+    "flake8-builtins",
+    "flake8-executable",
+    "flake8-if-expr",
+    "flake8-logging-format",
+    "flake8-pie",
+    "flake8-print",
+    "flake8-simplify",
+    "flake8-tidy-imports",
+    "setuptools",
+    "wemake-python-styleguide",
+]
+
+[isort]
+version = "isort==5.9.3"
+config = "vendor/setup.cfg"
+lockfile = "vendor/lock/isort.txt"
+interpreter_constraints = ["CPython==3.9.7"]
+
+[mypy]
+version = "mypy==0.910"
+config = "vendor/setup.cfg"
+lockfile = "vendor/lock/mypy.txt"
+interpreter_constraints = ["CPython==3.9.7"]
+extra_requirements = ["grpc-stubs"]
+
+[poetry]
+version = "poetry==1.1.1"
+interpreter_constraints = ["CPython==3.9.7"]
+
+[pytest]
+lockfile = "vendor/lock/pytest.txt"
+extra_requirements = [
+    "pytest-cov",
+    "pytest-icdiff",
+    "pygments",
+]
+
+[python]
+interpreter_constraints = ["CPython==3.9.7"]
+requirement_constraints = "vendor/lock/constraints.txt"
+
+[source]
+root_patterns = [
+    "/python",
+]
+
+[test]
+xml_dir = "dist/test_results"

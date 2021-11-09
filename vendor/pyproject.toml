@@ -1,0 +1,25 @@
+[tool.black]
+line-length = 88
+target-version = ["py39"]
+
+[tool.poetry]
+name = "aoc-tdd"
+version = "0.1.0"
+description = "Attempt to solve Advent of Code puzzles using TDD."
+authors = ["Marcus Bolmstedt <marcus@bolmstedt.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.9.7"
+typer = {extras = ["colorama", "shellingham"], version = "^0.4.0"}
+requests = "^2.26.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^6.2.5"
+types-requests = "^2.25.11"
+requests-mock = "^1.9.3"
+pyfakefs = "^4.5.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
