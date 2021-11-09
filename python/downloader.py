@@ -10,7 +10,7 @@ _BUILD_FILE = """python_sources()
 """
 _BUILD_FILE_WITH_TESTS = """python_sources()
 
-python_tests(name="tests)
+python_tests(name="tests")
 """
 
 
