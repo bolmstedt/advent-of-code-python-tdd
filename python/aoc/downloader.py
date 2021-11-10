@@ -5,13 +5,9 @@ import re
 import requests
 import typer
 
-AOC_WEB = "https://adventofcode.com/{year}/day/{day}"
-_BUILD_FILE = """python_sources()
-"""
-_BUILD_FILE_WITH_TESTS = """python_sources()
+from aoc import loader, templates
 
-python_tests(name="tests")
-"""
+AOC_WEB = "https://adventofcode.com/{year}/day/{day}"
 
 
 def download(year: int, day: int) -> None:
@@ -20,9 +16,25 @@ def download(year: int, day: int) -> None:
 
     day_name = "day_{day}_{name}".format(day=padded_day, name=_name_to_slug(name_raw))
     folder = pathlib.Path(
-        "python/year_{year}/{day_name}".format(year=year, day_name=day_name),
+        "python/aoc/year_{year}/{day_name}".format(year=year, day_name=day_name),
     )
     _create_solution_path(folder)
+    _create_file(pathlib.Path(folder.parent, "__init__.py"))
+    _create_file(
+        pathlib.Path(folder.parent, "BUILD"),
+        loader.get_module_data(templates, "BUILD_YEAR"),
+    )
+    _create_file(pathlib.Path(folder, "__init__.py"))
+    _create_file(
+        pathlib.Path(folder, "BUILD"),
+        loader.get_module_data(templates, "BUILD_DAY"),
+    )
+    solution = loader.get_module_data(templates, "solution.py")
+    solution = solution.replace("1", str(day))
+    solution = solution.replace("2", str(year))
+    solution = solution.replace("__NAME__", str(name_raw))
+    _create_file(pathlib.Path(folder, "solution.py"), solution)
+    _create_file(pathlib.Path(folder, "solution_test.py"))
     typer.echo(
         "Generated {year}:{day} - {name}".format(
             year=year,
@@ -58,12 +70,6 @@ def _name_to_slug(raw_name: str) -> str:
 def _create_solution_path(folder: pathlib.Path) -> None:
     folder.mkdir(parents=True, exist_ok=True)
     typer.echo("Created {folder}".format(folder=folder))
-    _create_file(pathlib.Path(folder.parent, "__init__.py"))
-    _create_file(pathlib.Path(folder.parent, "BUILD"), _BUILD_FILE)
-    _create_file(pathlib.Path(folder, "__init__.py"))
-    _create_file(pathlib.Path(folder, "BUILD"), _BUILD_FILE_WITH_TESTS)
-    _create_file(pathlib.Path(folder, "solution.py"))
-    _create_file(pathlib.Path(folder, "solution_test.py"))
 
 
 def _create_file(file_path: pathlib.Path, file_content: str = "") -> None:

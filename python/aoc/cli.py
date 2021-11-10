@@ -1,9 +1,10 @@
 import datetime
+import pathlib
 from typing import Optional
 
 import typer
 
-import downloader
+from aoc import downloader, loader
 
 app = typer.Typer()
 
@@ -11,6 +12,15 @@ app = typer.Typer()
 @app.command()
 def benchmark() -> None:
     typer.echo("Benchmarking")
+
+
+@app.command()
+def solve() -> None:
+    folder = pathlib.Path(__file__).parent
+
+    for day in folder.glob("year_*/*/solution.py"):
+        solver = loader.create_solver(day)
+        solver.solve()
 
 
 @app.command()

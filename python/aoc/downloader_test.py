@@ -6,13 +6,13 @@ import requests_mock as req_mock
 import typer
 from pyfakefs import fake_filesystem
 
-import downloader
+from aoc import downloader
 
 _RESPONSE = "<h2>--- Day 1: Foo @ Bar (Baz)---</h2>"
 _TEST_YEAR = 2015
 _TEST_DAY = 1
 _TEST_URL = downloader.AOC_WEB.format(year=_TEST_YEAR, day=_TEST_DAY)
-_TEST_YEAR_FOLDER = "python/year_2015"
+_TEST_YEAR_FOLDER = "python/aoc/year_2015"
 _TEST_DAY_FOLDER = "{folder}/day_01_foo_bar_baz".format(folder=_TEST_YEAR_FOLDER)
 
 
@@ -61,8 +61,8 @@ def test_file_is_created(
     fs: fake_filesystem.FakeFilesystem,
     file_path: str,
 ) -> None:
-    file_path = pathlib.Path(file_path)
-    assert not file_path.exists()
+    file_path_to_test = pathlib.Path(file_path)
+    assert not file_path_to_test.exists()
     requests_mock.get(_TEST_URL, text=_RESPONSE)
     downloader.download(year=_TEST_YEAR, day=_TEST_DAY)
-    assert file_path.exists()
+    assert file_path_to_test.exists()
