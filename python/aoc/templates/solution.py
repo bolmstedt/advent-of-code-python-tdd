@@ -2,8 +2,8 @@ from aoc import solution_helpers
 
 
 class Solution(solution_helpers.Solution):
-    day: int = 1
-    year: int = 2
+    day: int = 1111
+    year: int = 2222
     name: str = "__NAME__"
 
     def _solve_part_one(self) -> int:

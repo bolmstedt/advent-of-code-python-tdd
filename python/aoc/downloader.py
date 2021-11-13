@@ -30,11 +30,12 @@ def download(year: int, day: int) -> None:
         loader.get_module_data(templates, "BUILD_DAY"),
     )
     solution = loader.get_module_data(templates, "solution.py")
-    solution = solution.replace("1", str(day))
-    solution = solution.replace("2", str(year))
+    solution = solution.replace("1111", str(day))
+    solution = solution.replace("2222", str(year))
     solution = solution.replace("__NAME__", str(name_raw))
     _create_file(pathlib.Path(folder, "solution.py"), solution)
     _create_file(pathlib.Path(folder, "solution_test.py"))
+    _create_file(pathlib.Path(folder, "input.txt"))
     typer.echo(
         "Generated {year}:{day} - {name}".format(
             year=year,

@@ -54,6 +54,7 @@ def test_day_folder_is_created(
         "{folder}/BUILD".format(folder=_TEST_DAY_FOLDER),
         "{folder}/solution.py".format(folder=_TEST_DAY_FOLDER),
         "{folder}/solution_test.py".format(folder=_TEST_DAY_FOLDER),
+        "{folder}/input.txt".format(folder=_TEST_DAY_FOLDER),
     ),
 )
 def test_file_is_created(
