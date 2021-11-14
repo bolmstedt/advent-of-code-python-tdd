@@ -10,17 +10,16 @@ app = typer.Typer()
 
 
 @app.command()
-def benchmark() -> None:
-    typer.echo("Benchmarking")
-
-
-@app.command()
-def solve() -> None:
+def solve(benchmark: Optional[bool] = False, iterations: int = 100) -> None:
     folder = pathlib.Path(__file__).parent
 
     for day in folder.glob("year_*/*/solution.py"):
         solver = loader.create_solver(day)
-        solver.solve()
+
+        if benchmark:
+            solver.benchmark(iterations)
+        else:
+            solver.solve()
 
 
 @app.command()
