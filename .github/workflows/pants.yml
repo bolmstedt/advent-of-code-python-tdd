@@ -1,4 +1,4 @@
-name: Pants
+name: Pipeline
 
 on:
   push:
