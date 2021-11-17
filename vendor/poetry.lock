@@ -211,7 +211,7 @@ test = ["shellingham (>=1.3.0,<2.0.0)", "pytest (>=4.4.0,<5.4.0)", "pytest-cov (
 
 [[package]]
 name = "types-requests"
-version = "2.25.12"
+version = "2.26.0"
 description = "Typing stubs for requests"
 category = "dev"
 optional = false
@@ -232,8 +232,8 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 
 [metadata]
 lock-version = "1.1"
-python-versions = "3.9.7"
-content-hash = "168d0fd4c19ea59ef44e7176b05ac0cd06c8eff79a8f1dbccbd245c3ad55c024"
+python-versions = "~3.9.7"
+content-hash = "ff5ad659b4a8caa41a24bd498e6de9ee45173ecb3db2ebf8de1715c6ca52956c"
 
 [metadata.files]
 atomicwrites = [
@@ -313,8 +313,8 @@ typer = [
     {file = "typer-0.4.0.tar.gz", hash = "sha256:63c3aeab0549750ffe40da79a1b524f60e08a2cbc3126c520ebf2eeaf507f5dd"},
 ]
 types-requests = [
-    {file = "types-requests-2.25.12.tar.gz", hash = "sha256:055863c0aacf8f8f29cd2ca0d3320efdf39f28e71de68d327761751d2f62bb57"},
-    {file = "types_requests-2.25.12-py3-none-any.whl", hash = "sha256:441a0e5671a3813e69e39ae2369d8f45558dcb96eff0bac148806e4799304f3f"},
+    {file = "types-requests-2.26.0.tar.gz", hash = "sha256:df5ec8c34b413a42ebb38e4f96bdeb68090b875bdfcc5138dc82989c95445883"},
+    {file = "types_requests-2.26.0-py3-none-any.whl", hash = "sha256:809b5dcd3c408ac39d11d593835b6aff32420b3e7ddb79c7f3e823330f040466"},
 ]
 urllib3 = [
     {file = "urllib3-1.26.7-py2.py3-none-any.whl", hash = "sha256:c4fdf4019605b6e5423637e01bc9fe4daef873709a7973e195ceba0a62bbc844"},

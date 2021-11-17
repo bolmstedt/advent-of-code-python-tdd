@@ -23,7 +23,7 @@ jobs:
           ~/.cache/pants/named_caches
         key: ${{ runner.os }}-
     - name: Setup Python 3.9
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v2
       with:
         python-version: 3.9
     - name: Bootstrap Pants

@@ -23,16 +23,16 @@ lockfile = "vendor/lock/bandit.txt"
 version = "black==21.9b0"
 config = "vendor/pyproject.toml"
 lockfile = "vendor/lock/black.txt"
-interpreter_constraints = ["CPython==3.9.7"]
+interpreter_constraints = ["CPython==3.9.*"]
 
 [coverage-py]
-interpreter_constraints = ["CPython==3.9.7"]
+interpreter_constraints = ["CPython==3.9.*"]
 
 [docformatter]
 version = "docformatter==1.4"
 lockfile = "vendor/lock/docformatter.txt"
 args = ["--wrap-summaries", "87", "--wrap-descriptions", "80"]
-interpreter_constraints = ["CPython==3.9.7"]
+interpreter_constraints = ["CPython==3.9.*"]
 
 [flake8]
 version = "flake8==3.9.2"
@@ -56,18 +56,18 @@ extra_requirements = [
 version = "isort==5.9.3"
 config = "vendor/setup.cfg"
 lockfile = "vendor/lock/isort.txt"
-interpreter_constraints = ["CPython==3.9.7"]
+interpreter_constraints = ["CPython==3.9.*"]
 
 [mypy]
 version = "mypy==0.910"
 config = "vendor/setup.cfg"
 lockfile = "vendor/lock/mypy.txt"
-interpreter_constraints = ["CPython==3.9.7"]
+interpreter_constraints = ["CPython==3.9.*"]
 extra_requirements = ["grpc-stubs"]
 
 [poetry]
 version = "poetry==1.1.1"
-interpreter_constraints = ["CPython==3.9.7"]
+interpreter_constraints = ["CPython==3.9.*"]
 
 [pytest]
 lockfile = "vendor/lock/pytest.txt"
@@ -78,7 +78,7 @@ extra_requirements = [
 ]
 
 [python]
-interpreter_constraints = ["CPython==3.9.7"]
+interpreter_constraints = ["CPython==3.9.*"]
 requirement_constraints = "vendor/lock/constraints.txt"
 
 [source]

@@ -10,7 +10,7 @@ authors = ["Marcus Bolmstedt <marcus@bolmstedt.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "3.9.7"
+python = "~3.9.7"
 typer = {extras = ["colorama", "shellingham"], version = "^0.4.0"}
 requests = "^2.26.0"
 
