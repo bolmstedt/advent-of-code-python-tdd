@@ -27,6 +27,10 @@ interpreter_constraints = ["CPython==3.9.*"]
 
 [coverage-py]
 interpreter_constraints = ["CPython==3.9.*"]
+report = [
+    "console",
+    "html",
+]
 
 [docformatter]
 version = "docformatter==1.4"
@@ -87,4 +91,4 @@ root_patterns = [
 ]
 
 [test]
-xml_dir = "dist/test_results"
+use_coverage = true
