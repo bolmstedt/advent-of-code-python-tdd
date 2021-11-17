@@ -10,9 +10,6 @@ report = [
     "xml",
 ]
 
-[python]
-interpreter_search_paths = ["/opt/hostedtoolcache"]
-
 [python-native-code]
 cpp_flags = ["-I/usr/local/include/python3.9/"]
 
