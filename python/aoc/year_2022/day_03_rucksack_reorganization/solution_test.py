@@ -18,7 +18,7 @@ def test_priority(input_data: str, expected: int) -> None:
 @pytest.mark.parametrize(
     ("input_data", "expected"),
     [
-        ("abcd", 0),
+        ("abad", 1),
         ("adcd", 4),
     ],
 )

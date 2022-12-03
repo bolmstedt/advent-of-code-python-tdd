@@ -17,19 +17,25 @@ class Solution(solution.Solution):
 
     def solve_part_one(self) -> int:
         return sum(
-            self._priorities[collision]
+            self._priorities[
+                more_itertools.first(
+                    set.intersection(
+                        set(rucksack[: len(rucksack) // 2]),
+                        set(rucksack[len(rucksack) // 2 :]),
+                    ),
+                )
+            ]
             for rucksack in self._input_lines
-            for collision in set.intersection(
-                set(rucksack[: len(rucksack) // 2]),
-                set(rucksack[len(rucksack) // 2 :]),
-            )
         )
 
     def solve_part_two(self) -> int:
         return sum(
-            self._priorities[collision]
+            self._priorities[
+                more_itertools.first(
+                    set.intersection(
+                        *[set(rucksack) for rucksack in rucksacks],
+                    ),
+                )
+            ]
             for rucksacks in more_itertools.chunked(self._input_lines, 3)
-            for collision in set.intersection(
-                *[set(rucksack) for rucksack in rucksacks],
-            )
         )
