@@ -10,9 +10,14 @@ class Solution(solution_helpers.Solution):
     year: int = 2022
     name: str = "Rucksack Reorganization"
 
+    _priorities = {
+        letter: priority
+        for priority, letter in enumerate(string.ascii_letters, start=1)
+    }
+
     def _solve_part_one(self) -> int:
         return sum(
-            string.ascii_letters.find(collision) + 1
+            self._priorities[collision]
             for rucksack in self._input_lines
             for collision in set.intersection(
                 set(rucksack[: len(rucksack) // 2]),
@@ -22,7 +27,7 @@ class Solution(solution_helpers.Solution):
 
     def _solve_part_two(self) -> int:
         return sum(
-            string.ascii_letters.find(collision) + 1
+            self._priorities[collision]
             for rucksacks in more_itertools.chunked(self._input_lines, 3)
             for collision in set.intersection(
                 *[set(rucksack) for rucksack in rucksacks],
