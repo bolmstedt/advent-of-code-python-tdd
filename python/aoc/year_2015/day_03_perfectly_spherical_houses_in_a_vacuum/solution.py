@@ -17,25 +17,39 @@ class _Sled(object):
         self._x_pos = 0
         self._y_pos = 0
 
-    @property
-    def coordinates(self) -> str:
-        return "{x},{y}".format(x=self._x_pos, y=self._y_pos)
+    def move(self, direction: str) -> tuple[int, int]:
+        match direction:
+            case "<":
+                self._x_pos -= 1
+            case ">":
+                self._x_pos += 1
+            case "^":
+                self._y_pos -= 1
+            case "v":
+                self._y_pos += 1
 
-    def move(self, direction: str) -> str:
-        x_change, y_change = _DIRECTIONS[direction]
-        self._x_pos += x_change
-        self._y_pos += y_change
-
-        return self.coordinates
+        return self._x_pos, self._y_pos
 
 
-def _visit_houses(directions: str, sleds: list[_Sled]) -> int:
-    grid = {sleds[0].coordinates}
-    number_of_sleds = len(sleds)
+def _visit_houses(directions: str, sleds: int) -> int:
+    grid = {(0, 0)}
 
-    for index, sled in enumerate(sleds):
-        for direction in directions[index::number_of_sleds]:
-            grid.add(sled.move(direction))
+    for starting_index in range(sleds):
+        x_pos = 0
+        y_pos = 0
+
+        for direction in directions[starting_index::sleds]:
+            match direction:
+                case "<":
+                    x_pos -= 1
+                case ">":
+                    x_pos += 1
+                case "^":
+                    y_pos -= 1
+                case "v":
+                    y_pos += 1
+
+            grid.add((x_pos, y_pos))
 
     return len(grid)
 
@@ -46,7 +60,7 @@ class Solution(solution.Solution):
     name: str = "Perfectly Spherical Houses in a Vacuum"
 
     def solve_part_one(self) -> int:
-        return _visit_houses(self._input_data, [_Sled()])
+        return _visit_houses(self._input_data, 1)
 
     def solve_part_two(self) -> int:
-        return _visit_houses(self._input_data, [_Sled(), _Sled()])
+        return _visit_houses(self._input_data, 2)

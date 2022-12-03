@@ -4,12 +4,11 @@ from aoc import solution
 
 
 def _calculate_box_area(length: int, width: int, height: int) -> int:
-    return (
-        2 * length * width
-        + 2 * width * height
-        + 2 * height * length
-        + min(length * width, width * height, height * length)
-    )
+    lw = length * width
+    wh = width * height
+    hl = height * length
+
+    return 2 * (lw + wh + hl) + min(lw, wh, hl)
 
 
 def _get_dimension_tuple(dimensions: str) -> tuple[int, int, int]:
