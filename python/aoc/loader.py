@@ -3,10 +3,10 @@ import pkgutil
 from importlib import machinery
 from types import ModuleType
 
-from aoc import solution_helpers
+from aoc import solver
 
 
-def create_solver(module_path: pathlib.Path) -> solution_helpers.Solver:
+def create_solver(module_path: pathlib.Path) -> solver.Solver:
     module = machinery.SourceFileLoader("solution", str(module_path)).load_module()
 
     try:
@@ -14,7 +14,7 @@ def create_solver(module_path: pathlib.Path) -> solution_helpers.Solver:
     except AttributeError:
         raise ValueError("Package is not a valid solution module")
 
-    return solution_helpers.Solver(solution_class(get_input_data(module)))
+    return solver.Solver(solution_class(get_input_data(module)))
 
 
 def get_file_data(module: str, file_name: str) -> str:

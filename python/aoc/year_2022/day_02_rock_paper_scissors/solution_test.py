@@ -13,7 +13,9 @@ from aoc.year_2022.day_02_rock_paper_scissors import solution
     ],
 )
 def test_move_scores(input_data: str, expected: int) -> None:
-    assert solution.Solution(input_data).solve_part_one() == expected
+    day = solution.Solution(input_data)
+    assert day.solve_part_one() == expected
+    assert day.solve_part_one_math() == expected
 
 
 @pytest.mark.parametrize(
@@ -25,7 +27,9 @@ def test_move_scores(input_data: str, expected: int) -> None:
     ],
 )
 def test_round_scores(input_data: str, expected: int) -> None:
-    assert solution.Solution(input_data).solve_part_one() == expected
+    day = solution.Solution(input_data)
+    assert day.solve_part_one() == expected
+    assert day.solve_part_one_math() == expected
 
 
 @pytest.mark.parametrize(
@@ -36,7 +40,9 @@ def test_round_scores(input_data: str, expected: int) -> None:
     ],
 )
 def test_wrong_games(input_data: str, expected: int) -> None:
-    assert solution.Solution(input_data).solve_part_one() == expected
+    day = solution.Solution(input_data)
+    assert day.solve_part_one() == expected
+    assert day.solve_part_one_math() == expected
 
 
 @pytest.mark.parametrize(
@@ -48,7 +54,9 @@ def test_wrong_games(input_data: str, expected: int) -> None:
     ],
 )
 def test_reactive_scores(input_data: str, expected: int) -> None:
-    assert solution.Solution(input_data).solve_part_two() == expected
+    day = solution.Solution(input_data)
+    assert day.solve_part_two() == expected
+    assert day.solve_part_two_math() == expected
 
 
 @pytest.mark.parametrize(
@@ -59,4 +67,6 @@ def test_reactive_scores(input_data: str, expected: int) -> None:
     ],
 )
 def test_correct_games(input_data: str, expected: int) -> None:
-    assert solution.Solution(input_data).solve_part_two() == expected
+    day = solution.Solution(input_data)
+    assert day.solve_part_two() == expected
+    assert day.solve_part_two_math() == expected

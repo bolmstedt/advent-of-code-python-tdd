@@ -1,15 +1,15 @@
-from aoc import solution_helpers
+from aoc import solution
 
 
-class Solution(solution_helpers.Solution):
+class Solution(solution.Solution):
     day: int = 1
     year: int = 2022
     name: str = "Calorie Counting"
 
-    def _solve_part_one(self) -> int:
+    def solve_part_one(self) -> int:
         return max(self._get_calories_per_elf())
 
-    def _solve_part_two(self) -> int:
+    def solve_part_two(self) -> int:
         calories_by_elf = self._get_calories_per_elf()
 
         return sum(sorted(calories_by_elf, reverse=True)[:3])

@@ -1,12 +1,12 @@
-from aoc import solution_helpers
+from aoc import solution
 
 
-class Solution(solution_helpers.Solution):
+class Solution(solution.Solution):
     day: int = 2
     year: int = 2021
     name: str = "Dive!"
 
-    def _solve_part_one(self) -> int:
+    def solve_part_one(self) -> int:
         depth = 0
         horizontal = 0
 
@@ -23,7 +23,7 @@ class Solution(solution_helpers.Solution):
 
         return depth * horizontal
 
-    def _solve_part_two(self) -> int:
+    def solve_part_two(self) -> int:
         dive = _Dive()
 
         for command in self._input_lines:

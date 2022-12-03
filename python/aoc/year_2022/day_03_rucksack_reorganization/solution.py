@@ -2,10 +2,10 @@ import string
 
 import more_itertools
 
-from aoc import solution_helpers
+from aoc import solution
 
 
-class Solution(solution_helpers.Solution):
+class Solution(solution.Solution):
     day: int = 3
     year: int = 2022
     name: str = "Rucksack Reorganization"
@@ -15,7 +15,7 @@ class Solution(solution_helpers.Solution):
         for priority, letter in enumerate(string.ascii_letters, start=1)
     }
 
-    def _solve_part_one(self) -> int:
+    def solve_part_one(self) -> int:
         return sum(
             self._priorities[collision]
             for rucksack in self._input_lines
@@ -25,7 +25,7 @@ class Solution(solution_helpers.Solution):
             )
         )
 
-    def _solve_part_two(self) -> int:
+    def solve_part_two(self) -> int:
         return sum(
             self._priorities[collision]
             for rucksacks in more_itertools.chunked(self._input_lines, 3)

@@ -1,13 +1,13 @@
-from aoc import solution_helpers
+from aoc import solution
 
 
-class Solution(solution_helpers.Solution):
+class Solution(solution.Solution):
     day: int = 1111
     year: int = 2222
     name: str = "__NAME__"
 
-    def _solve_part_one(self) -> int:
+    def solve_part_one(self) -> int:
         return 0
 
-    def _solve_part_two(self) -> int:
+    def solve_part_two(self) -> int:
         return 0

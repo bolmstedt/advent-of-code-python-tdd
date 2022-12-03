@@ -1,6 +1,6 @@
 from typing import Iterable
 
-from aoc import solution_helpers
+from aoc import solution
 
 
 def _calculate_box_area(length: int, width: int, height: int) -> int:
@@ -22,18 +22,18 @@ def _calculate_ribbon_length(length: int, width: int, height: int) -> int:
     return 2 * (length + width) + length * width * height
 
 
-class Solution(solution_helpers.Solution):
+class Solution(solution.Solution):
     day: int = 2
     year: int = 2015
     name: str = "I Was Told There Would Be No Math"
 
-    def _solve_part_one(self) -> int:
+    def solve_part_one(self) -> int:
         return sum(
             _calculate_box_area(length, width, height)
             for length, width, height in self._process_data()
         )
 
-    def _solve_part_two(self) -> int:
+    def solve_part_two(self) -> int:
         return sum(
             _calculate_ribbon_length(length, width, height)
             for length, width, height in self._process_data()

@@ -1,13 +1,14 @@
-import abc
 import math
 import time
-from typing import Callable, Union
+from typing import Callable
 
 import typer
 
+from aoc import solution
+
 
 class SolutionResult(object):
-    def __init__(self, solution_result: Union[str, int]):
+    def __init__(self, solution_result: int | str):
         self._solution_result = solution_result
 
     def __str__(self) -> str:
@@ -23,51 +24,15 @@ class SolutionResult(object):
         return str(self._solution_result) == str(other)
 
 
-class Solution(abc.ABC):
-    day: int
-    year: int
-    name: str
-
-    def __init__(self, input_data: str):
-        self._input_data = input_data.strip("\n")
-        self._input_lines = self._input_data.splitlines()
-
-    @property
-    def module(self) -> str:
-        return self.__module__
-
-    @property
-    def solution_name(self) -> str:
-        return "{year}:{day} - {name}".format(
-            year=self.year,
-            day=self.day,
-            name=self.name,
-        )
-
-    def solve_part_one(self) -> SolutionResult:
-        return SolutionResult(self._solve_part_one())
-
-    def solve_part_two(self) -> SolutionResult:
-        return SolutionResult(self._solve_part_two())
-
-    @abc.abstractmethod
-    def _solve_part_one(self) -> Union[str, int]:
-        """Implement part one's solution."""
-
-    @abc.abstractmethod
-    def _solve_part_two(self) -> Union[str, int]:
-        """Implement part two's solution."""
-
-
 class Solver(object):
-    def __init__(self, solution: Solution):
-        self._solution = solution
+    def __init__(self, day_solution: solution.Solution):
+        self._solution = day_solution
 
     def solve(self) -> None:
         typer.echo("Solving {name}".format(name=self._solution.solution_name))
-        solution_result = self._solution.solve_part_one()
+        solution_result = SolutionResult(self._solution.solve_part_one())
         typer.echo("- Part One: {result}".format(result=solution_result))
-        solution_result = self._solution.solve_part_two()
+        solution_result = SolutionResult(self._solution.solve_part_two())
         typer.echo("- Part Two: {result}".format(result=solution_result))
 
     def benchmark(self, iterations: int = 1) -> None:
@@ -88,7 +53,7 @@ class Solver(object):
 
 def _benchmark(
     name: str,
-    func: Callable[[], SolutionResult],
+    func: Callable[[], int | str],
     iterations: int = 1,
 ) -> str:
     with typer.progressbar(

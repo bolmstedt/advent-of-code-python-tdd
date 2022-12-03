@@ -1,8 +1,6 @@
-from __future__ import annotations
-
 from types import MappingProxyType
 
-from aoc import solution_helpers
+from aoc import solution
 
 _MOVES = MappingProxyType(
     {
@@ -38,30 +36,30 @@ _PART_TWO_POINTS = (
 )
 
 
-class Solution(solution_helpers.Solution):
+class Solution(solution.Solution):
     day: int = 2
     year: int = 2022
     name: str = "Rock Paper Scissors"
 
-    def _solve_part_one(self) -> int:
+    def solve_part_one(self) -> int:
         return sum(
             self._input_data.count(game) * points
             for points, game in enumerate(_PART_ONE_POINTS, start=1)
         )
 
-    def _solve_part_two(self) -> int:
+    def solve_part_two(self) -> int:
         return sum(
             self._input_data.count(game) * points
             for points, game in enumerate(_PART_TWO_POINTS, start=1)
         )
 
-    def _math_solve_part_one(self) -> int:
+    def solve_part_one_math(self) -> int:
         return sum(
             _calculate_points(_MOVES[game_round[0]], _MOVES[game_round[2]])
             for game_round in self._input_lines
         )
 
-    def _math_solve_part_two(self) -> int:
+    def solve_part_two_math(self) -> int:
         return sum(
             _calculate_decided_points(_MOVES[game_round[0]], _MOVES[game_round[2]])
             for game_round in self._input_lines

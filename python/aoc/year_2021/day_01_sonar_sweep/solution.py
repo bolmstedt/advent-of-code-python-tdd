@@ -3,21 +3,21 @@ from typing import Iterable, cast
 
 import more_itertools
 
-from aoc import solution_helpers
+from aoc import solution
 
 
-class Solution(solution_helpers.Solution):
+class Solution(solution.Solution):
     day: int = 1
     year: int = 2021
     name: str = "Sonar Sweep"
 
-    def _solve_part_one(self) -> int:
+    def solve_part_one(self) -> int:
         return sum(
             int(current > previous)
             for previous, current in itertools.pairwise(map(int, self._input_lines))
         )
 
-    def _solve_part_two(self) -> int:
+    def solve_part_two(self) -> int:
         input_lines = filter(None, self._input_data.splitlines())
         input_parsed = map(int, input_lines)
         summed_windows = [

@@ -1,6 +1,6 @@
 import types
 
-from aoc import solution_helpers
+from aoc import solution
 
 _DIRECTIONS = types.MappingProxyType(
     {
@@ -40,13 +40,13 @@ def _visit_houses(directions: str, sleds: list[_Sled]) -> int:
     return len(grid)
 
 
-class Solution(solution_helpers.Solution):
+class Solution(solution.Solution):
     day: int = 3
     year: int = 2015
     name: str = "Perfectly Spherical Houses in a Vacuum"
 
-    def _solve_part_one(self) -> int:
+    def solve_part_one(self) -> int:
         return _visit_houses(self._input_data, [_Sled()])
 
-    def _solve_part_two(self) -> int:
+    def solve_part_two(self) -> int:
         return _visit_houses(self._input_data, [_Sled(), _Sled()])
