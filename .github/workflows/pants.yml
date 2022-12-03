@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
       with:
-        fetch-depth: 2
+        fetch-depth: 3
     - name: Setup Python 3.11
       uses: actions/setup-python@v2
       with:
@@ -31,16 +31,16 @@ jobs:
         ./pants --version
     - name: Check BUILD files
       run: |
-        ./pants --changed-since=origin/HEAD~2 tailor --check update-build-files --check
+        ./pants --changed-since=HEAD~2 tailor --check update-build-files --check
     - name: Lint
       run: |
-        ./pants --changed-since=origin/HEAD~2 lint ::
+        ./pants --changed-since=HEAD~2 lint ::
     - name: Typecheck
       run: |
-        ./pants --changed-since=origin/HEAD~2 --changed-dependees=transitive check ::
+        ./pants --changed-since=HEAD~2 --changed-dependees=transitive check ::
     - name: Test
       run: |
-        ./pants --changed-since=origin/HEAD~2 --changed-dependees=transitive test ::
+        ./pants --changed-since=HEAD~2 --changed-dependees=transitive test ::
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
