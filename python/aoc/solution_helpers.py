@@ -29,7 +29,8 @@ class Solution(abc.ABC):
     name: str
 
     def __init__(self, input_data: str):
-        self._input_data = input_data
+        self._input_data = input_data.strip("\n")
+        self._input_lines = self._input_data.splitlines()
 
     @property
     def module(self) -> str:
@@ -85,7 +86,11 @@ class Solver(object):
         typer.secho(solution_time, fg=_get_color(solution_time))
 
 
-def _benchmark(name: str, func: Callable, iterations: int = 1) -> str:
+def _benchmark(
+    name: str,
+    func: Callable[[], SolutionResult],
+    iterations: int = 1,
+) -> str:
     with typer.progressbar(
         range(iterations),
         label=name,

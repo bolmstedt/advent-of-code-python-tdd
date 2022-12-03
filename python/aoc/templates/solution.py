@@ -7,7 +7,7 @@ class Solution(solution_helpers.Solution):
     name: str = "__NAME__"
 
     def _solve_part_one(self) -> int:
-        """Implement the first part of the day's solution."""
+        return 0
 
     def _solve_part_two(self) -> int:
-        """Implement the second part of the day's solution."""
+        return 0

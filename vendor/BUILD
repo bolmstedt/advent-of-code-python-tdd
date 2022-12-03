@@ -1,1 +1,1 @@
-poetry_requirements()
+python_requirements()

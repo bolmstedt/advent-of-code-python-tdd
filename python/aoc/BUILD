@@ -1,5 +1,5 @@
 python_sources(
-    dependencies=[":templates", ":solutions"],
+    dependencies=[":templates", ":solutions", "vendor#more-itertools"],
 )
 
 python_tests(name="tests")

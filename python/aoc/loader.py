@@ -21,7 +21,12 @@ def get_file_data(module: str, file_name: str) -> str:
     input_data = pkgutil.get_data(module, file_name)
 
     if not input_data:
-        raise FileNotFoundError("No file named {name} found".format(name=file_name))
+        raise FileNotFoundError(
+            "No file named {name} found in {module}".format(
+                name=file_name,
+                module=str(module),
+            ),
+        )
 
     return input_data.decode("utf-8").strip()
 

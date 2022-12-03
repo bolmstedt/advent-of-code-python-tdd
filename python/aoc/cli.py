@@ -13,7 +13,7 @@ app = typer.Typer()
 def solve(benchmark: Optional[bool] = False, iterations: int = 100) -> None:
     folder = pathlib.Path(__file__).parent
 
-    for day in folder.glob("year_*/*/solution.py"):
+    for day in sorted(folder.glob("year_*/*/solution.py")):
         solver = loader.create_solver(day)
 
         if benchmark:
@@ -24,12 +24,8 @@ def solve(benchmark: Optional[bool] = False, iterations: int = 100) -> None:
 
 @app.command()
 def generate(year: Optional[int] = None, day: Optional[int] = None) -> None:
-    if not year:
-        year = datetime.datetime.now().year
-
-    if not day:
-        day = datetime.datetime.now().day
-
+    year = year or datetime.datetime.now().year
+    day = day or datetime.datetime.now().day
     downloader.download(year=year, day=day)
 
 

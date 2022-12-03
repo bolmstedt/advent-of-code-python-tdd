@@ -1,6 +1,8 @@
 [GLOBAL]
-pants_version = "2.8.0rc3"
+pants_version = "2.14.0"
 backend_packages = [
+    "pants.backend.build_files.fmt.black",
+    "pants.backend.experimental.python.lint.autoflake",
     "pants.backend.python",
     "pants.backend.python.lint.bandit",
     "pants.backend.python.lint.black",
@@ -13,33 +15,38 @@ backend_packages = [
 [anonymous-telemetry]
 enabled = false
 
+[autoflake]
+version = "autoflake==1.7.7"
+lockfile = "vendor/lock/autoflake.txt"
+args = ["--remove-all-unused-imports", "--remove-unused-variables"]
+
 [bandit]
-version = "bandit==1.7.0"
+version = "bandit==1.7.4"
 config = "vendor/bandit.yml"
 args = ["--silent"]
 lockfile = "vendor/lock/bandit.txt"
 
 [black]
-version = "black==21.9b0"
+version = "black==22.10.0"
 config = "vendor/pyproject.toml"
 lockfile = "vendor/lock/black.txt"
-interpreter_constraints = ["CPython==3.9.*"]
+interpreter_constraints = ["CPython==3.11.*"]
 
 [coverage-py]
-interpreter_constraints = ["CPython==3.9.*"]
+interpreter_constraints = ["CPython==3.11.*"]
 report = [
     "console",
     "html",
 ]
 
 [docformatter]
-version = "docformatter==1.4"
+version = "docformatter==1.5"
 lockfile = "vendor/lock/docformatter.txt"
 args = ["--wrap-summaries", "87", "--wrap-descriptions", "80"]
-interpreter_constraints = ["CPython==3.9.*"]
+interpreter_constraints = ["CPython==3.11.*"]
 
 [flake8]
-version = "flake8==3.9.2"
+version = "flake8==4.0.1"
 config = "vendor/setup.cfg"
 lockfile = "vendor/lock/flake8.txt"
 extra_requirements = [
@@ -57,23 +64,20 @@ extra_requirements = [
 ]
 
 [isort]
-version = "isort==5.9.3"
+version = "isort==5.10.1"
 config = "vendor/setup.cfg"
 lockfile = "vendor/lock/isort.txt"
-interpreter_constraints = ["CPython==3.9.*"]
+interpreter_constraints = ["CPython==3.11.*"]
 
 [mypy]
-version = "mypy==0.910"
+version = "mypy==0.990"
 config = "vendor/setup.cfg"
 lockfile = "vendor/lock/mypy.txt"
-interpreter_constraints = ["CPython==3.9.*"]
+interpreter_constraints = ["CPython==3.11.*"]
 extra_requirements = ["grpc-stubs"]
 
-[poetry]
-version = "poetry==1.1.1"
-interpreter_constraints = ["CPython==3.9.*"]
-
 [pytest]
+version = "pytest==7.2.0"
 lockfile = "vendor/lock/pytest.txt"
 extra_requirements = [
     "pytest-cov",
@@ -82,8 +86,9 @@ extra_requirements = [
 ]
 
 [python]
-interpreter_constraints = ["CPython==3.9.*"]
-requirement_constraints = "vendor/lock/constraints.txt"
+interpreter_constraints = ["CPython==3.11.*"]
+enable_resolves = true
+resolves = {python-default = "vendor/lock/constraints.txt"}
 
 [source]
 root_patterns = [

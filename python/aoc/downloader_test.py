@@ -48,9 +48,6 @@ def test_day_folder_is_created(
 @pytest.mark.parametrize(
     "file_path",
     (
-        "{folder}/__init__.py".format(folder=_TEST_YEAR_FOLDER),
-        "{folder}/BUILD".format(folder=_TEST_YEAR_FOLDER),
-        "{folder}/__init__.py".format(folder=_TEST_DAY_FOLDER),
         "{folder}/BUILD".format(folder=_TEST_DAY_FOLDER),
         "{folder}/solution.py".format(folder=_TEST_DAY_FOLDER),
         "{folder}/solution_test.py".format(folder=_TEST_DAY_FOLDER),

@@ -19,12 +19,6 @@ def download(year: int, day: int) -> None:
         "python/aoc/year_{year}/{day_name}".format(year=year, day_name=day_name),
     )
     _create_solution_path(folder)
-    _create_file(pathlib.Path(folder.parent, "__init__.py"))
-    _create_file(
-        pathlib.Path(folder.parent, "BUILD"),
-        loader.get_module_data(templates, "BUILD_YEAR"),
-    )
-    _create_file(pathlib.Path(folder, "__init__.py"))
     _create_file(
         pathlib.Path(folder, "BUILD"),
         loader.get_module_data(templates, "BUILD_DAY"),
