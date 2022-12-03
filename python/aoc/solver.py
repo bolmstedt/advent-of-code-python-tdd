@@ -1,8 +1,8 @@
-import math
 import time
 from typing import Callable
 
 import typer
+from rich import progress
 
 from aoc import solution
 
@@ -56,22 +56,23 @@ def _benchmark(
     func: Callable[[], int | str],
     iterations: int = 1,
 ) -> str:
-    with typer.progressbar(
-        range(iterations),
-        label=name,
-        update_min_steps=int(math.ceil(iterations / 100)),
-    ) as progress:
+    total = 0
+    progress_bar = progress.track(
+        sequence=range(iterations),
+        description=name,
+        total=iterations,
+        transient=True,
+    )
+
+    for _ in progress_bar:
         start = time.perf_counter_ns()
-
-        for _ in progress:
-            func()
-
+        func()
         end = time.perf_counter_ns()
+        total += end - start
 
-    total = end - start
     average = _get_human_readable_time(total / iterations)
 
-    return "-- Average {time}".format(time=average)
+    return "{name} {time}".format(name=name, time=average)
 
 
 def _get_human_readable_time(nanoseconds: float) -> str:
