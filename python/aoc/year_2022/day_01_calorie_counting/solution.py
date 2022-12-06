@@ -10,9 +10,7 @@ class Solution(solution.Solution):
         return max(self._get_calories_per_elf())
 
     def solve_part_two(self) -> int:
-        calories_by_elf = self._get_calories_per_elf()
-
-        return sum(sorted(calories_by_elf, reverse=True)[:3])
+        return sum(sorted(self._get_calories_per_elf(), reverse=True)[:3])
 
     def _get_calories_per_elf(self) -> list[int]:
         calories_by_elf = []

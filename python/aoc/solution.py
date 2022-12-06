@@ -7,7 +7,7 @@ class Solution(abc.ABC):
     name: str
 
     def __init__(self, input_data: str):
-        self._input_data = input_data.strip("\n")
+        self._input_data = input_data.rstrip("\n")
         self._input_lines = self._input_data.splitlines()
 
     @property

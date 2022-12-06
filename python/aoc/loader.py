@@ -28,7 +28,7 @@ def get_file_data(module: str, file_name: str) -> str:
             ),
         )
 
-    return input_data.decode("utf-8").strip()
+    return input_data.decode("utf-8")
 
 
 def get_module_data(module: ModuleType, file_name: str) -> str:
