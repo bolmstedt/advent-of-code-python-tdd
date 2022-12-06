@@ -12,25 +12,6 @@ _DIRECTIONS = types.MappingProxyType(
 )
 
 
-class _Sled(object):
-    def __init__(self) -> None:
-        self._x_pos = 0
-        self._y_pos = 0
-
-    def move(self, direction: str) -> tuple[int, int]:
-        match direction:
-            case "<":
-                self._x_pos -= 1
-            case ">":
-                self._x_pos += 1
-            case "^":
-                self._y_pos -= 1
-            case "v":
-                self._y_pos += 1
-
-        return self._x_pos, self._y_pos
-
-
 def _visit_houses(directions: str, sleds: int) -> int:
     grid = {(0, 0)}
 

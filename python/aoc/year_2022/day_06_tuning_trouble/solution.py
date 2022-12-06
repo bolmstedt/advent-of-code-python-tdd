@@ -1,7 +1,3 @@
-import itertools
-
-import more_itertools
-
 from aoc import solution
 
 _PART_ONE_WINDOW = 4
@@ -14,33 +10,25 @@ class Solution(solution.Solution):
     name: str = "Tuning Trouble"
 
     def solve_part_one(self) -> int:
-        return self._find_small_unique_window(_PART_ONE_WINDOW)
+        return self._find_unique_window(_PART_ONE_WINDOW)
 
     def solve_part_two(self) -> int:
-        return self._find_large_unique_window(_PART_TWO_WINDOW)
+        return self._find_unique_window(_PART_TWO_WINDOW)
 
-    def _find_small_unique_window(self, length: int) -> int:
-        windows = enumerate(more_itertools.windowed(self._input_data, length), length)
+    def _find_unique_window(self, length: int) -> int:
+        max_length = len(self._input_data)
+        index = length - 1
 
-        for index, window in windows:
-            if len(set(window)) == length:
-                return index
+        while index <= max_length:
+            for current in range(length):
+                matched = self._input_data[index - length + 1 : index - current].rfind(
+                    self._input_data[index - current],
+                )
+
+                if matched > -1:
+                    index += matched + 1
+                    break
+            else:
+                return index + 1
 
         return 0
-
-    def _find_large_unique_window(self, length: int) -> int:
-        windows = enumerate(more_itertools.windowed(self._input_data, length), length)
-        index, window = next(windows)
-        missing_unique_length = length - len(set(window))
-
-        while missing_unique_length:
-            index, window = next(
-                itertools.islice(
-                    windows,
-                    missing_unique_length - 1,
-                    missing_unique_length,
-                ),
-            )
-            missing_unique_length = length - len(set(window))
-
-        return index
