@@ -10,11 +10,27 @@ app = typer.Typer()
 
 
 @app.command()
-def solve(benchmark: Optional[bool] = False, iterations: int = 100) -> None:
-    folder = pathlib.Path(__file__).parent
+def solve(
+    today: Optional[bool] = False,
+    year: str = "*",
+    day: str = "*",
+    benchmark: Optional[bool] = False,
+    iterations: int = 100,
+) -> None:
+    if today:
+        year = str(datetime.datetime.now().year)
+        day = str(datetime.datetime.now().day)
 
-    for day in sorted(folder.glob("year_*/*/solution.py")):
-        solver = loader.create_solver(day)
+    if day != "*":
+        day = day.zfill(2)
+
+    if year != "*" and len(year) == 2:
+        year = "20{year}".format(year=year)
+
+    path = "year_{year}/day_{day}_*/solution.py".format(year=year, day=day)
+
+    for day_solution in sorted(pathlib.Path(__file__).parent.glob(path)):
+        solver = loader.create_solver(day_solution)
 
         if benchmark:
             solver.benchmark(iterations)
