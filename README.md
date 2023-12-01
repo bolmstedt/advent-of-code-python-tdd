@@ -2,13 +2,14 @@
 [![pants-badge]][pants]
 [![python-badge]][python]
 [![codecov-badge]][codecov]
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 
 # Advent of Code - Python (TDD)
 
 Attempt to solve [Advent of Code][aoc] puzzles in [Python][python] using
 [TDD][tdd].
 
-[pants]: https://www.python.org/
+[pants]: https://www.pantsbuild.org/
 [pants-badge]: https://img.shields.io/badge/pants-v2.20.0.dev0-blue
 [python]: https://www.python.org/
 [python-badge]: https://img.shields.io/badge/python-v3.11.0-blue
