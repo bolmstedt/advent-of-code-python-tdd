@@ -39,7 +39,7 @@ jobs:
         pants lint check ::
     - name: Test
       run: |
-        pants test
+        pants test ::
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
