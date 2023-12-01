@@ -16,7 +16,7 @@
 //     "more-itertools==10.1.0",
 //     "mypy==1.7.0",
 //     "orjson==3.9.10",
-//     "pyfakefs==4.5.3",
+//     "pyfakefs==5.3.2",
 //     "pytest-asyncio==0.21.1",
 //     "pytest-cov==4.1.0",
 //     "pytest-icdiff==0.8",
@@ -698,19 +698,19 @@
           "artifacts": [
             {
               "algorithm": "sha256",
-              "hash": "501d784c6ad57ce7ab727249166d58043d199ebbb67b404ecab67bcb1a9bb696",
-              "url": "https://files.pythonhosted.org/packages/79/76/614e552ffc242c0e3ca9031147c6cf284706dfaeddbfd91b6a63e97bbdb7/pyfakefs-4.5.3-py3-none-any.whl"
+              "hash": "5a62194cfa24542a3c9080b66ce65d78b2e977957edfd3cd6fe98e8349bcca32",
+              "url": "https://files.pythonhosted.org/packages/a3/04/4b7dedc9e9d6f632fb0de38ce8bc00ddcc8043d2932ac731fb8bb99427da/pyfakefs-5.3.2-py3-none-any.whl"
             },
             {
               "algorithm": "sha256",
-              "hash": "f49db689c1d5db6172131479ca77bd474ba2cb886c869b9867fb89cdab2df397",
-              "url": "https://files.pythonhosted.org/packages/73/86/c8a0c50e5cbdfa14beec1dfa5a38b30614eae87d663103e1f2682d389bc5/pyfakefs-4.5.3.tar.gz"
+              "hash": "a83776a3c1046d4d103f2f530029aa6cdff5f0386dffd59c15ee16926135493c",
+              "url": "https://files.pythonhosted.org/packages/80/cb/af1d1c9075a3b1b8b663a9acb026c07ea6c0b6203b6c9d59836afb933b35/pyfakefs-5.3.2.tar.gz"
             }
           ],
           "project_name": "pyfakefs",
           "requires_dists": [],
-          "requires_python": ">=3.6",
-          "version": "4.5.3"
+          "requires_python": ">=3.7",
+          "version": "5.3.2"
         },
         {
           "artifacts": [
@@ -1246,7 +1246,7 @@
     "more-itertools==10.1.0",
     "mypy==1.7.0",
     "orjson==3.9.10",
-    "pyfakefs==4.5.3",
+    "pyfakefs==5.3.2",
     "pytest-asyncio==0.21.1",
     "pytest-cov==4.1.0",
     "pytest-icdiff==0.8",

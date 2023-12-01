@@ -5,7 +5,7 @@ docformatter==1.7.5
 more-itertools==10.1.0
 mypy==1.7.0
 orjson==3.9.10
-pyfakefs==4.5.3
+pyfakefs==5.3.2
 pytest==7.4.3
 pytest-asyncio==0.21.1
 pytest-cov==4.1.0
