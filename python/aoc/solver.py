@@ -1,5 +1,5 @@
 import time
-from typing import Callable
+from collections.abc import Callable
 
 import typer
 from rich import progress
@@ -11,6 +11,9 @@ class SolutionResult(object):
     def __init__(self, solution_result: int | str):
         self._solution_result = solution_result
 
+    def __hash__(self) -> int:
+        return hash(str(self))
+
     def __str__(self) -> str:
         return str(self._solution_result)
 
@@ -18,7 +21,7 @@ class SolutionResult(object):
         return str(self._solution_result)
 
     def __eq__(self, other: object) -> bool:
-        if not isinstance(other, (str, int)):
+        if not isinstance(other, str | int):
             return False
 
         return str(self._solution_result) == str(other)
@@ -81,7 +84,7 @@ def _get_human_readable_time(nanoseconds: float) -> str:
 
     if humanized > 1000:
         humanized /= 1000
-        unit = "µs"
+        unit = "μs"
 
     if humanized > 1000:
         humanized /= 1000
@@ -100,7 +103,7 @@ def _get_color(average_time: str) -> str:
     if "ns" in average_time:
         return typer.colors.CYAN
 
-    if "µs" in average_time:
+    if "μs" in average_time:
         return typer.colors.GREEN
 
     if "ms" in average_time:

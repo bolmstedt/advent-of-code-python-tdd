@@ -1,5 +1,5 @@
 import itertools
-from typing import Iterable, Sequence
+from collections.abc import Iterable, Sequence
 
 from aoc import solution
 
@@ -7,7 +7,7 @@ Coordinate = tuple[int, int]
 
 
 class Cave(object):
-    def __init__(self, input_lines: Iterable[str], add_floor: bool = False):
+    def __init__(self, input_lines: Iterable[str], *, add_floor: bool = False):
         self.start = (500, 0)
         self.cave = {self.start}
 
@@ -55,6 +55,7 @@ class Cave(object):
         for possible_move in possible_moves:
             if possible_move not in self.cave:
                 return possible_move
+        return None
 
     def _fill_cave(self, input_lines: Iterable[str]) -> None:
         for line in input_lines:

@@ -1,4 +1,4 @@
-from typing import Callable, Iterator, Sequence
+from collections.abc import Callable, Iterator, Sequence
 
 from aoc import solution
 
@@ -41,4 +41,4 @@ def _range_contains_another(first: Sequence[int], second: Sequence[int]) -> bool
 
 
 def _ranges_overlap(first: Sequence[int], second: Sequence[int]) -> bool:
-    return first[0] <= second[1] and second[0] <= first[1]  # noqa: WPS221
+    return first[0] <= second[1] and second[0] <= first[1]

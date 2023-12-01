@@ -1,4 +1,4 @@
-from typing import Iterator, Sequence
+from collections.abc import Iterator, Sequence
 
 import more_itertools
 
@@ -29,10 +29,7 @@ class Solution(solution.Solution):
         stacks, operations = self._process_input()
 
         for operation in operations:
-            popped = []
-
-            for _ in range(operation[0]):
-                popped.append(stacks[operation[1]].pop(0))
+            popped = [stacks[operation[1]].pop(0) for _ in range(operation[0])]
 
             popped.reverse()
 

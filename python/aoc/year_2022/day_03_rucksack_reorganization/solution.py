@@ -1,4 +1,5 @@
 import string
+from types import MappingProxyType
 
 import more_itertools
 
@@ -10,10 +11,12 @@ class Solution(solution.Solution):
     year: int = 2022
     name: str = "Rucksack Reorganization"
 
-    _priorities = {
-        letter: priority
-        for priority, letter in enumerate(string.ascii_letters, start=1)
-    }
+    _priorities = MappingProxyType(
+        {
+            letter: priority
+            for priority, letter in enumerate(string.ascii_letters, start=1)
+        },
+    )
 
     def solve_part_one(self) -> int:
         return sum(

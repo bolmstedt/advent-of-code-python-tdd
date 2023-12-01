@@ -1,14 +1,193 @@
-[tool.bandit.assert_used]
-skips = [
-    "*_test.py",
-    "*/conftest.py",
-]
-
 [tool.black]
 line-length = 88
 target-version = ["py311"]
 preview = true
 
+[tool.coverage.report]
+include_namespace_packages = true
+omit = ["python/aoc/templates/*"]
+skip_empty = true
+exclude_lines = ["pragma: no cover", "if TYPE_CHECKING:"]
+
 [tool.coverage.run]
 branch = true
-omit = ["*/conftest.py", "*_test.py"]
+omit = ["python/aoc/templates/*"]
+relative_files = true
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_any_generics = true
+disallow_incomplete_defs = true
+disallow_subclassing_any = false # Can't activate because of some ignored packages.
+disallow_untyped_calls = true
+disallow_untyped_decorators = true
+disallow_untyped_defs = true
+enable_error_code = [
+  "ignore-without-code",
+  "possibly-undefined",
+  "redundant-expr",
+  "redundant-self",
+  "truthy-bool",
+  "truthy-iterable",
+  "unused-awaitable",
+]
+explicit_package_bases = true
+extra_checks = true
+follow_imports = "normal"
+follow_imports_for_stubs = true
+no_implicit_reexport = true
+local_partial_types = true
+pretty = true
+show_column_numbers = true
+show_error_codes = true
+show_error_code_links = true
+strict_optional = true
+strict_equality = true
+namespace_packages = true
+no_implicit_optional = true
+warn_incomplete_stub = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_return_any = false
+warn_unused_configs = true
+warn_unreachable = true
+warn_no_return = true
+
+#[tool.pytest.ini_options]
+#filterwarnings = [
+#  "error",
+#  "ignore::DeprecationWarning:xdist.plugin",
+#  "ignore::DeprecationWarning:unittest.mock",
+#  "ignore::DeprecationWarning:mongomock.__version__:1",
+#  "ignore::DeprecationWarning:pkg_resources",
+#  "ignore::DeprecationWarning:google.rpc",
+#  "ignore::DeprecationWarning:openapi_core.deserializing.parameters.deserializers",
+#  "ignore::DeprecationWarning:openapi_core.validation.request.validators",
+#  "ignore::DeprecationWarning:pydantic._internal._generate_schema",
+#  "ignore::DeprecationWarning:pydantic._internal._model_construction",
+#]
+
+addopts = "--import-mode=importlib --asyncio-mode=auto"
+
+[tool.ruff]
+ignore = [
+  "COM812",  # Trailing comma missing. Incompatible with Ruff's formatter.
+  "COM819",  # Trailing comma prohibited. Incompatible with Ruff's formatter.
+  "D100",    # Missing docstring in public module
+  "D101",    # Missing docstring in public class
+  "D102",    # Missing docstring in public method
+  "D103",    # Missing docstring in public function
+  "D104",    # Missing docstring in public package
+  "D105",    # Missing docstring in magic method
+  "D106",    # Missing docstring in public nested class
+  "D107",    # Missing docstring in `__init__
+  "D206",    # Docstring should be indented with spaces, not tabs. Incompatible with Ruff's formatter.
+  "D300",    # Use triple double quotes """. Incompatible with Ruff's formatter.
+  "D418",    # Function decorated with `@overload` shouldn't contain a docstring
+  "ANN101",  # Missing type annotation for self in method
+  "ANN102",  # Missing type annotation for cls in classmethod
+  "ANN401",  # Dynamically typed expressions (typing.Any) are disallowed
+  "E111",    # Indentation is not a multiple of. Incompatible with Ruff's formatter.
+  "E114",    # Indentation is not a multiple of {indent_size} (comment). Incompatible with Ruff's formatter.
+  "E117",    # Over-indented (comment). Incompatible with Ruff's formatter.
+  "E203",    # Whitespace before ':'. Incompatible with Ruff's formatter.
+  "E501",    # Line too long. Incompatible with Ruff's formatter.
+  "ISC001",  # Implicitly concatenated string literals on one line. Incompatible with Ruff's formatter.
+  "ISC002",  # Implicitly concatenated string literals over multiple lines. Incompatible with Ruff's formatter.
+  "PLC1901", # can be simplified as an empty string is falsey
+  "PLR0913", # Too many arguments to function call # TODO: fix
+  "PLR2004", # Magic value used in comparison, consider replacing with a constant variable # TODO: fix
+  "PLR6301", # Method could be a function or static method
+  "PLR0904", # Too many public methods
+  "Q000",    # Single quotes found but double quotes preferred. Incompatible with Ruff's formatter.
+  "Q001",    # Single quote multiline found but double quotes preferred. Incompatible with Ruff's formatter.
+  "Q002",    # Single quote docstring found but double quotes preferred. Incompatible with Ruff's formatter.
+  "Q003",    # Change outer quotes to avoid escaping inner quotes. Incompatible with Ruff's formatter.
+  "TD002",   # Missing author in TODO; try: `# TODO(<author_name>): ...` or `# TODO @<author_name>: ...`
+  "TD003",   # Missing issue link on the line following this TODO
+  "TRY003",  # Avoid specifying long messages outside the exception class # TODO: fix
+  "UP004",   # Class inherits from `object`
+  "UP030",   # Use implicit references for positional format fields
+  "UP032",   # Use f-string instead of `format` call
+  "W191",    # Indentation contains tabs. Incompatible with Ruff's formatter.
+]
+select = [
+  "A",   # flake8-builtins
+  "AIR", # Airflow
+  "ANN", # flake8-annotations
+  #"ARG", # flake8-unused-arguments
+  "ASYNC", # flake8-async
+  "B",     # flake8-bugbear
+  "BLE",   # flake8-blind-except
+  "C4",    # flake8-comprehensions
+  "C90",   # mccabe
+  "COM",   # flake8-commas
+  #"CPY", # Copyright-related rules
+  "D",   # pydocstyle
+  "DJ",  # flake8-django
+  "DTZ", # flake8-datetimez
+  "E",   # pycodestyle
+  #"EM", # flake8-errmsg
+  "ERA", # eradicate
+  "EXE", # flake8-executable
+  "F",   # Pyflakes
+  "FA",  # flake8-future-annotations
+  "FBT", # flake8-boolean-trap
+  #"FIX", # flake8-fixme
+  "FLY",  # flynt
+  "FURB", # refurb
+  "G",    # flake8-logging-format
+  "I",    # isort
+  "ISC",  # flake8-implicit-str-concat
+  "ICN",  # flake8-import-conventions
+  #"INP", # flake8-no-pep420
+  "INT", # flake8-gettext
+  "LOG", # flake8-logging
+  "N",   # pep8-naming
+  "NPY", # NumPy-specific rules
+  "PD",  # pandas-vet
+  "PGH", # pygrep-hooks
+  "PIE", # flake8-pie
+  "PL",  # Pylint
+  "RET", # flake8-return
+  #"RSE", # flake8-raise
+  "PERF", # Perflint
+  "PT",   # flake8-pytest-style
+  "PTH",  # flake8-use-pathlib
+  "PYI",  # flake8-pyi
+  "Q",    # flake8-quotes
+  "RUF",  # Ruff-specific rules
+  "S",    # flake8-bandit
+  "SIM",  # flake8-simplify
+  "SLF",  # flake8-self
+  "SLOT", # flake8-slots
+  "T10",  # flake8-debugger
+  "T20",  # flake8-print
+  #"TCH", # flake8-type-checking
+  "TD",  # flake8-todos
+  "TID", # flake8-tidy-imports
+  "TRY", # tryceratops
+  "UP",  # pyupgrade
+  "W",   # pycodestyle
+  "YTT", # flake8-2020
+]
+target-version = "py311"
+preview = true
+unsafe-fixes = true
+
+[tool.ruff.flake8-annotations]
+mypy-init-return = true
+
+[tool.ruff.format]
+preview = true
+
+[tool.ruff.isort]
+known-first-party = ["aoc"]
+
+[tool.ruff.per-file-ignores]
+"*/conftest.py" = ["S101", "S105", "S106"]
+"*_test.py" = ["S101", "S105", "S106"]
+
+[tool.ruff.pydocstyle]
+convention = "google"
+

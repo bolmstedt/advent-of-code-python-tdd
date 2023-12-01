@@ -7,7 +7,7 @@ class Solution(solution.Solution):
     name: str = "__NAME__"
 
     def solve_part_one(self) -> int:
-        return 0
+        return -1
 
     def solve_part_two(self) -> int:
-        return 0
+        return -1

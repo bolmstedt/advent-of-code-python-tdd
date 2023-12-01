@@ -1,6 +1,5 @@
 import datetime
 import pathlib
-from typing import Optional
 
 import typer
 
@@ -11,15 +10,17 @@ app = typer.Typer()
 
 @app.command()
 def solve(
-    today: Optional[bool] = False,
     year: str = "*",
     day: str = "*",
-    benchmark: Optional[bool] = False,
     iterations: int = 100,
+    *,
+    today: bool | None = False,
+    benchmark: bool | None = False,
 ) -> None:
     if today:
-        year = str(datetime.datetime.now().year)
-        day = str(datetime.datetime.now().day)
+        now = datetime.datetime.now(tz=datetime.UTC)
+        year = str(now.year)
+        day = str(now.day)
 
     if day != "*":
         day = day.zfill(2)
@@ -39,9 +40,10 @@ def solve(
 
 
 @app.command()
-def generate(year: Optional[int] = None, day: Optional[int] = None) -> None:
-    year = year or datetime.datetime.now().year
-    day = day or datetime.datetime.now().day
+def generate(year: int | None = None, day: int | None = None) -> None:
+    now = datetime.datetime.now(tz=datetime.UTC)
+    year = year or now.year
+    day = day or now.day
     downloader.download(year=year, day=day)
 
 

@@ -1,4 +1,5 @@
-from typing import Iterable
+from collections.abc import Iterable
+from itertools import starmap
 
 from aoc import solution
 
@@ -28,14 +29,12 @@ class Solution(solution.Solution):
 
     def solve_part_one(self) -> int:
         return sum(
-            _calculate_box_area(length, width, height)
-            for length, width, height in self._process_data()
+            starmap(_calculate_box_area, self._process_data()),
         )
 
     def solve_part_two(self) -> int:
         return sum(
-            _calculate_ribbon_length(length, width, height)
-            for length, width, height in self._process_data()
+            starmap(_calculate_ribbon_length, self._process_data()),
         )
 
     def _process_data(self) -> Iterable[tuple[int, int, int]]:

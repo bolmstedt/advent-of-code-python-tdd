@@ -11,8 +11,8 @@ def create_solver(module_path: pathlib.Path) -> solver.Solver:
 
     try:
         solution_class = getattr(module, "Solution")  # noqa: B009
-    except AttributeError:
-        raise ValueError("Package is not a valid solution module")
+    except AttributeError as err:
+        raise ValueError("Package is not a valid solution module") from err
 
     return solver.Solver(solution_class(get_input_data(module)))
 

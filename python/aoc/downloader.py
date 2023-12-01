@@ -41,7 +41,7 @@ def download(year: int, day: int) -> None:
 
 def _get_day_name(year: int, day: int) -> str:
     url = AOC_WEB.format(year=year, day=day)
-    response = requests.get(url)
+    response = requests.get(url, timeout=5)
     match = re.search(r"<h2>--- Day \d{1,2}:(.*)---</h2>", response.text)
 
     if not match:
