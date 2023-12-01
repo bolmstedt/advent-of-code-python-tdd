@@ -14,8 +14,8 @@ def solve(
     day: str = "*",
     iterations: int = 100,
     *,
-    today: bool | None = False,
-    benchmark: bool | None = False,
+    today: bool = False,
+    benchmark: bool = False,
 ) -> None:
     if today:
         now = datetime.datetime.now(tz=datetime.UTC)
