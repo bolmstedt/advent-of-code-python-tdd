@@ -33,16 +33,13 @@ jobs:
         pants --version
     - name: Check BUILD files
       run: |
-        pants --changed-since=HEAD~2 tailor --check update-build-files --check
-    - name: Lint
+        pants tailor --check update-build-files --check ::
+    - name: Lint and typecheck
       run: |
-        pants --changed-since=HEAD~2 lint
-    - name: Typecheck
-      run: |
-        pants --changed-since=HEAD~2 --changed-dependents=transitive check
+        pants lint check ::
     - name: Test
       run: |
-        pants --changed-since=HEAD~2 --changed-dependents=transitive test
+        pants test
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
