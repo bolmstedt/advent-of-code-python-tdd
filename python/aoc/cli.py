@@ -40,7 +40,7 @@ def solve(
 
 
 @app.command()
-def generate(year: int | None = None, day: int | None = None) -> None:
+def generate(year: int = 0, day: int = 0) -> None:
     now = datetime.datetime.now(tz=datetime.UTC)
     year = year or now.year
     day = day or now.day
