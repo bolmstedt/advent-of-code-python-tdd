@@ -32,7 +32,6 @@ def download(year: int, day: int) -> None:
     solution_test = solution_test.replace("1111", str(day))
     solution_test = solution_test.replace("2222", str(year))
     solution_test = solution_test.replace("__NAME__", day_name)
-    print(solution_test)
     _create_file(pathlib.Path(folder, "solution_test.py"), solution_test)
     _create_file(pathlib.Path(folder, "input.txt"))
     _create_file(pathlib.Path(folder, "fixture.txt"))
