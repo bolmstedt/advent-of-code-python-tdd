@@ -1,59 +1,15 @@
 from collections import Counter
 from collections.abc import Mapping
-from types import MappingProxyType
 from typing import NamedTuple
 
 from aoc import solution
 
 _BASE = 13
 _TYPE_MULTIPLIER = _BASE**5
-
-_CARDS_PART_ONE: Mapping[str, int] = MappingProxyType(
-    {
-        "A": 13,
-        "K": 12,
-        "Q": 11,
-        "J": 10,
-        "T": 9,
-        "9": 8,
-        "8": 7,
-        "7": 6,
-        "6": 5,
-        "5": 4,
-        "4": 3,
-        "3": 2,
-        "2": 1,
-    },
-)
-
-
-_CARDS_PART_TWO: Mapping[str, int] = MappingProxyType(
-    {
-        "A": 13,
-        "K": 12,
-        "Q": 11,
-        "T": 10,
-        "9": 9,
-        "8": 8,
-        "7": 7,
-        "6": 6,
-        "5": 5,
-        "4": 4,
-        "3": 3,
-        "2": 2,
-        "J": 1,
-    },
-)
-
-_HANDS = {
-    (5,): 6,
-    (4, 1): 5,
-    (3, 2): 4,
-    (3, 1): 3,
-    (2, 2): 2,
-    (2, 1): 1,
-    (1, 1): 0,
-}
+_CARD_RANGE = range(4, -1, -1)
+_CARDS_PART_ONE = dict(zip("AKQJT98765432", range(13, 0, -1), strict=True))
+_CARDS_PART_TWO = dict(zip("AKQT98765432J", range(13, 0, -1), strict=True))
+_HANDS = {(4, 1): 5, (3, 2): 4, (3, 1): 3, (2, 2): 2, (2, 1): 1, (1, 1): 0}
 
 
 class Hand(NamedTuple):
@@ -110,8 +66,7 @@ def _hand_joker_score(hand: Hand) -> int:
 
 def _card_score(hand: Hand) -> int:
     return sum(
-        card * _BASE**value
-        for card, value in zip(hand.cards, range(4, -1, -1), strict=True)
+        card * _BASE**value for card, value in zip(hand.cards, _CARD_RANGE, strict=True)
     )
 
 
