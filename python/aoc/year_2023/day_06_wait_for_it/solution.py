@@ -50,12 +50,7 @@ def ways_to_win(race: Race) -> int:
         (race.limit - math.sqrt(race.limit**2 - 4 * race.record + 1)) / 2,
     )
 
-    wins = race.limit - minimum_charge * 2 + 1
+    while race.limit * minimum_charge - minimum_charge**2 <= race.record:
+        minimum_charge += 1
 
-    for charge in range(minimum_charge, race.limit):
-        if race.limit * charge - charge**2 > race.record:
-            break
-
-        wins -= 2
-
-    return wins
+    return race.limit - minimum_charge * 2 + 1
