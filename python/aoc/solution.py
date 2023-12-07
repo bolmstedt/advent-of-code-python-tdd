@@ -11,10 +11,6 @@ class Solution(abc.ABC):
         self._input_lines = self._input_data.splitlines()
 
     @property
-    def module(self) -> str:
-        return self.__module__
-
-    @property
     def solution_name(self) -> str:
         return "{year}:{day} - {name}".format(
             year=self.year,

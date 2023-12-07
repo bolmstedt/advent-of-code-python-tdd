@@ -28,8 +28,14 @@ def download(year: int, day: int) -> None:
     solution = solution.replace("2222", str(year))
     solution = solution.replace("__NAME__", str(name_raw))
     _create_file(pathlib.Path(folder, "solution.py"), solution)
-    _create_file(pathlib.Path(folder, "solution_test.py"))
+    solution_test = loader.get_module_data(templates, "solution_test.py")
+    solution_test = solution_test.replace("1111", str(day))
+    solution_test = solution_test.replace("2222", str(year))
+    solution_test = solution_test.replace("__NAME__", day_name)
+    print(solution_test)
+    _create_file(pathlib.Path(folder, "solution_test.py"), solution_test)
     _create_file(pathlib.Path(folder, "input.txt"))
+    _create_file(pathlib.Path(folder, "fixture.txt"))
     typer.echo(
         "Generated {year}:{day} - {name}".format(
             year=year,
@@ -56,7 +62,7 @@ def _get_day_name(year: int, day: int) -> str:
 
 def _name_to_slug(raw_name: str) -> str:
     return re.sub(
-        r"[^\w]",
+        r"\W",
         "",
         raw_name.lower().replace(" ", "_").replace("-", "_"),
     ).replace("__", "_")

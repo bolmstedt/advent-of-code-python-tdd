@@ -5,6 +5,7 @@ import pytest
 import requests_mock as req_mock
 import typer
 from pyfakefs import fake_filesystem
+from pytest_mock import plugin
 
 from aoc import downloader
 
@@ -52,6 +53,7 @@ def test_day_folder_is_created(
         "{folder}/solution.py".format(folder=_TEST_DAY_FOLDER),
         "{folder}/solution_test.py".format(folder=_TEST_DAY_FOLDER),
         "{folder}/input.txt".format(folder=_TEST_DAY_FOLDER),
+        "{folder}/fixture.txt".format(folder=_TEST_DAY_FOLDER),
     ],
 )
 def test_file_is_created(
@@ -64,3 +66,17 @@ def test_file_is_created(
     requests_mock.get(_TEST_URL, text=_RESPONSE)
     downloader.download(year=_TEST_YEAR, day=_TEST_DAY)
     assert file_path_to_test.exists()
+
+
+def test_file_is_not_created_when_it_exists(
+    requests_mock: req_mock.Mocker,
+    fs: fake_filesystem.FakeFilesystem,
+    mocker: plugin.MockerFixture,
+) -> None:
+    spy = mocker.spy(pathlib.Path, "open")
+    requests_mock.get(_TEST_URL, text=_RESPONSE)
+    downloader.download(year=_TEST_YEAR, day=_TEST_DAY)
+    last_call_count = spy.call_count
+    assert last_call_count > 0
+    downloader.download(year=_TEST_YEAR, day=_TEST_DAY)
+    assert spy.call_count == last_call_count

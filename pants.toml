@@ -60,6 +60,7 @@ requirements = [
   "pytest-asyncio",
   "pytest-cov",
   "pytest-icdiff",
+  "pytest-mock",
   "pytest-xdist",
 ]
 config = "vendor/pyproject.toml"
