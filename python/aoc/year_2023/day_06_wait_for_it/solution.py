@@ -9,7 +9,7 @@ _NUMBER_PATTERN = re.compile(r"(\d+)")
 
 class Race(NamedTuple):
     limit: int
-    distance: int
+    record: int
 
 
 class Solution(solution.Solution):
@@ -25,33 +25,37 @@ class Solution(solution.Solution):
 
     def _parse_races(self) -> list[Race]:
         limits = _NUMBER_PATTERN.findall(self._input_lines[0])
-        distances = _NUMBER_PATTERN.findall(self._input_lines[1])
+        records = _NUMBER_PATTERN.findall(self._input_lines[1])
 
         return [
             Race(
                 limit=int(limit),
-                distance=int(distance),
+                record=int(record),
             )
-            for limit, distance in zip(limits, distances, strict=True)
+            for limit, record in zip(limits, records, strict=True)
         ]
 
     def _parse_long_race(self) -> Race:
         limits = _NUMBER_PATTERN.findall(self._input_lines[0])
-        distances = _NUMBER_PATTERN.findall(self._input_lines[1])
+        records = _NUMBER_PATTERN.findall(self._input_lines[1])
 
         return Race(
             limit=int("".join(limits)),
-            distance=int("".join(distances)),
+            record=int("".join(records)),
         )
 
 
 def ways_to_win(race: Race) -> int:
-    wins = 0
-    minimum_charge = math.ceil(race.distance / race.limit)
-    maximum_charge = race.limit - minimum_charge + 1
+    minimum_charge = math.ceil(
+        (race.limit - math.sqrt(race.limit**2 - 4 * race.record + 1)) / 2,
+    )
 
-    for charge in range(minimum_charge, maximum_charge):
-        if charge * (race.limit - charge) > race.distance:
-            wins += 1
+    wins = race.limit - minimum_charge * 2 + 1
+
+    for charge in range(minimum_charge, race.limit):
+        if race.limit * charge - charge**2 > race.record:
+            break
+
+        wins -= 2
 
     return wins
