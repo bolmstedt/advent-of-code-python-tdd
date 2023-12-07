@@ -24,6 +24,7 @@ def test_part_one(input_data: str, expected: int) -> None:
 @pytest.mark.parametrize(
     ("input_data", "expected"),
     [
+        ("abc", 0),
         ("one", 11),
         ("twone", 21),
         (loader.get_module_data(solution, "fixture2.txt"), 281),

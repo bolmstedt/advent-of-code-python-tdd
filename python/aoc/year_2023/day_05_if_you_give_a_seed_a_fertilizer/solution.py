@@ -27,9 +27,6 @@ class Solution(solution.Solution):
     def solve_part_two(self) -> int:
         mapped = self._apply_range_mappings(self._get_soil_ranges())
 
-        if not mapped:
-            return -1
-
         return min(soil.start for soil in mapped if soil.start > 0)
 
     def _get_soils(self) -> set[int]:
