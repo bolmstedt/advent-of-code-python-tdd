@@ -9,9 +9,8 @@ class Nodes(object):
         nodes: dict[str, tuple[str, str]],
         instructions: tuple[int, ...],
     ):
-        self._raw_nodes = nodes
         self._instructions = instructions
-        self.length = len(instructions)
+        self._length = len(instructions)
         self._node_map = {node: index for index, node in enumerate(nodes.keys())}
         self._nodes = tuple(
             (self._node_map[node[0]], self._node_map[node[1]])
@@ -28,7 +27,7 @@ class Nodes(object):
         destinations = {self._node_map[end] for end in ends}
 
         while position not in destinations:
-            position = self._nodes[position][self._instructions[steps % self.length]]
+            position = self._nodes[position][self._instructions[steps % self._length]]
             steps += 1
 
         return steps
