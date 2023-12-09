@@ -1,5 +1,5 @@
 import itertools
-from collections.abc import Sequence
+from collections.abc import Iterator, Sequence
 
 from aoc import solution
 
@@ -17,11 +17,11 @@ class Solution(solution.Solution):
             _predict_previous_value(history) for history in self._parse_history()
         )
 
-    def _parse_history(self) -> list[list[int]]:
-        return [
+    def _parse_history(self) -> Iterator[list[int]]:
+        return (
             list(map(int, (number for number in line.split(" "))))
             for line in self._input_lines
-        ]
+        )
 
 
 def _predict_next_value(history: Sequence[int]) -> int:
