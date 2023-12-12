@@ -19,21 +19,22 @@ class Solution(solution.Solution):
         return self.distance_between_galaxies(1000000)
 
     def distance_between_galaxies(self, expansion_factor: int) -> int:
+        factor = expansion_factor - 1
         rows, columns = self._rows_and_columns_without_galaxies()
 
         return sum(
             _manhattan_distance(first, second)
-            + _expansion(first, second, rows, columns, expansion_factor - 1)
+            + _expansion(first, second, rows, columns, factor)
             for first, second in itertools.combinations(self._parse_galaxies(), 2)
         )
 
-    def _parse_galaxies(self) -> set[_Coordinates]:
-        galaxies = set()
+    def _parse_galaxies(self) -> list[_Coordinates]:
+        galaxies = []
 
         for y_pos, line in enumerate(self._input_lines):
             for x_pos, location in enumerate(line):
                 if location == "#":
-                    galaxies.add((x_pos, y_pos))
+                    galaxies.append((x_pos, y_pos))
 
         return galaxies
 
